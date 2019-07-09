@@ -1,0 +1,65 @@
+Predict the News Sentiment : 
+
+	The problem statement is predicting the score of the sentiment of News Title and score of the sentiment of News Headline for the given dataset.
+	I have described the approach, starting from data preprocessing to predicting the sentiments of title and headline. 
+	
+_______________________________________________________________________________________________________________________
+
+Author : M Sumanth
+Language : Python
+
+_______________________________________________________________________________________________________________________
+
+The given train dataset contains a total of 11 columns, out of which Title column specifies the sentimentTitle, Headline column specifies the sentimentHeadline
+
+I. DROPPED COLUMNS: 
+
+1. IDLink : This is a unique number for each published news. It doesn't capture any information related to the target variable. 
+
+2. PublishDate : PublishDate is the date and time of the News published which has no impact on the sentiments
+
+________________________________________________________________________________________________________________________
+
+II. NEW FEATURES: (DATA ANALYSIS)
+
+1. Checked the existence of NULL values in the columns of the train dataset and also the count of the existed NULL values in each column of the train dataset. Imputed the NULL Values of categorical variables with Mode(Most Frequent)
+
+2. Found out the No:of Words, No:of Unique_words, No:of Stop_words in the columns, Title and Headline of the each dataframe
+
+3. Calculated the Mean Length of words present in the columns, Title and Headline, in each dataframe
+
+4. Stored the length of the string present in the columns, Title and Headline
+
+________________________________________________________________________________________________________________________
+
+III. PRE-PROCESSING THE TEXT:
+
+1. Applied Lower-case method to the data.
+
+2. Removed punctuations from the data.
+    
+3. Applied Lemmatization on words and converted each word to its lemma.
+
+4. I also tried Stemming but Lemmatization outperforms well.
+
+5. Removed the Alpha-Numeric words from each string.
+
+_________________________________________________________________________________________________________________________
+
+IV. TRANSFORMATION OF TEXT INTO FEATURE VECTORS:
+
+Approach 1: Top 1000 words are considered. The text(Title, Headline) is converted into TF-IDF vectors which is used for training the Dense Neural Network Model.
+
+Approach 2: Each word is converted into an unique integer. Embeddings are learned using contextual similarities between words. As the domain is different from normal text, this way of learning word-embeddings is task specific and performs well. 
+
+__________________________________________________________________________________________________________________________
+
+V. MODELLING:
+
+After Text-preprocessing and transformation of text into feature vectors, I implemented LSTM approach as my base model. This gave me 94.68 on Leader Board.
+
+I have implemented the other approaches like Dense Neural Network with TF-IDF as input features and made submissions. However, LSTM Model has outperformed on Leader Board.
+
+I have also tried the XGBoost Regressor. However Deep Learning Model LSTM gave better results than XGBoost.
+
+
